@@ -1,28 +1,27 @@
-import React, { useState, useRef, FormEvent, ChangeEvent } from "react";
+import { useState, useRef, FormEvent, ChangeEvent } from "react";
 import { motion } from "framer-motion";
-
 import { EarthCanvas } from "../canvas";
 import { SectionWrapper } from "../../hoc";
 import { slideIn } from "../../utils/motion";
 import { config } from "../../constants/config";
 import { Header } from "../atoms/Header";
 
-interface FormFields {
+interface FormData {
   name: string;
   email: string;
   message: string;
 }
 
-const INITIAL_STATE: FormFields = {
+const INITIAL_STATE: FormData = {
   name: "",
   email: "",
   message: "",
 };
 
-const Contact: React.FC = () => {
-  const formRef = useRef<HTMLFormElement | null>(null);
-  const [form, setForm] = useState<FormFields>(INITIAL_STATE);
-  const [loading, setLoading] = useState(false);
+const Contact = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [form, setForm] = useState<FormData>(INITIAL_STATE);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -55,20 +54,20 @@ const Contact: React.FC = () => {
           onSubmit={handleSubmit}
           className="mt-12 flex flex-col gap-8"
         >
-          {Object.entries(config.contact.form).map(([input, { span, placeholder }]) => {
-            const Component = input === "message" ? "textarea" : "input";
+          {Object.entries(config.contact.form).map(([key, { span, placeholder }]) => {
+            const Component = key === "message" ? "textarea" : "input";
 
             return (
-              <label key={input} className="flex flex-col">
+              <label key={key} className="flex flex-col">
                 <span className="mb-4 font-medium text-white">{span}</span>
                 <Component
-                  type={input === "email" ? "email" : "text"}
-                  name={input}
-                  value={form[input as keyof FormFields]}
+                  type={key === "email" ? "email" : "text"}
+                  name={key}
+                  value={form[key as keyof FormData]}
                   onChange={handleChange}
                   placeholder={placeholder}
                   className="bg-tertiary placeholder:text-secondary rounded-lg border-none px-6 py-4 font-medium text-white outline-none"
-                  {...(input === "message" && { rows: 7 })}
+                  {...(key === "message" && { rows: 7 })}
                 />
               </label>
             );
