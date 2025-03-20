@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, FormEvent, ChangeEvent } from "react";
 import { motion } from "framer-motion";
 
 import { EarthCanvas } from "../canvas";
@@ -7,23 +7,29 @@ import { slideIn } from "../../utils/motion";
 import { config } from "../../constants/config";
 import { Header } from "../atoms/Header";
 
-const INITIAL_STATE = Object.fromEntries(
-  Object.keys(config.contact.form).map((input) => [input, ""])
-);
+interface FormFields {
+  name: string;
+  email: string;
+  message: string;
+}
 
-const Contact = () => {
-  const formRef = useRef(null);
-  const [form, setForm] = useState(INITIAL_STATE);
+const INITIAL_STATE: FormFields = {
+  name: "",
+  email: "",
+  message: "",
+};
+
+const Contact: React.FC = () => {
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const [form, setForm] = useState<FormFields>(INITIAL_STATE);
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    if (!e) return;
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    setForm((prevForm) => ({ ...prevForm, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    if (!e) return;
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
@@ -49,9 +55,7 @@ const Contact = () => {
           onSubmit={handleSubmit}
           className="mt-12 flex flex-col gap-8"
         >
-          {Object.keys(config.contact.form).map((input) => {
-            const { span, placeholder } =
-              config.contact.form[input];
+          {Object.entries(config.contact.form).map(([input, { span, placeholder }]) => {
             const Component = input === "message" ? "textarea" : "input";
 
             return (
@@ -60,7 +64,7 @@ const Contact = () => {
                 <Component
                   type={input === "email" ? "email" : "text"}
                   name={input}
-                  value={form[input]}
+                  value={form[input as keyof FormFields]}
                   onChange={handleChange}
                   placeholder={placeholder}
                   className="bg-tertiary placeholder:text-secondary rounded-lg border-none px-6 py-4 font-medium text-white outline-none"
