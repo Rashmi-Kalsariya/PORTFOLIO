@@ -80,7 +80,7 @@ const Contact = () => {
               {loading ? "Sending..." : "Send"}
             </button>
             <a
-              href="https://drive.google.com/file/d/1BLBaddzwgixI01BcFiJGItJBSWALZM38/view?usp=sharing"
+              href="https://drive.google.com/file/d/1a-AEUr7GVv7wcHraPulU9aGyven77mJy/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-secondary shadow-primary w-fit rounded-xl px-8 py-3 font-bold text-white shadow-md outline-none"
