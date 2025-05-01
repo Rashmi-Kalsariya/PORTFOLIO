@@ -67,17 +67,17 @@ export const config: TConfig = {
     about: {
       p: "Introduction",
       h2: "Overview.",
-      content: `➤ Passionate About Backend Development – I enjoy designing and optimizing backend systems, ensuring they are scalable, efficient, and well-structured.
+      content: `Passionate About Backend Development – I enjoy designing and optimizing backend systems, ensuring they are scalable, efficient, and well-structured.
 
-➤ Expertise in Database Management – I focus on optimizing databases for performance, security, and seamless integration with applications.
+Expertise in Database Management – I focus on optimizing databases for performance, security, and seamless integration with applications.
 
-➤ Problem-Solving Mindset – I love tackling complex challenges, improving system performance, and writing clean, maintainable code.
+Problem-Solving Mindset – I love tackling complex challenges, improving system performance, and writing clean, maintainable code.
 
-➤ Full-Stack Experience with Backend Focus – While I have worked across the full stack, backend development is where I excel the most.
+Full-Stack Experience with Backend Focus – While I have worked across the full stack, backend development is where I excel the most.
 
-➤ Continuous Learning & Adaptability – I stay updated with the latest technologies, always looking for ways to improve and innovate.
+Continuous Learning & Adaptability – I stay updated with the latest technologies, always looking for ways to improve and innovate.
 
-➤ Building High-Quality Solutions – My goal is to develop robust, well-architected applications that provide seamless user experiences.`,
+Building High-Quality Solutions – My goal is to develop robust, well-architected applications that provide seamless user experiences.`,
     },
     experience: {
       p: "What I have done so far",
