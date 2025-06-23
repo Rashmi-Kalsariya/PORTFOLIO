@@ -38,6 +38,9 @@ type TConfig = {
   };
 };
 
+
+
+
 export const config: TConfig = {
   html: {
     title: "Rashmi",
